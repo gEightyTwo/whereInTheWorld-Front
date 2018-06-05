@@ -1,0 +1,25 @@
+.login-row {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('../images/nomad2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.title-logo {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Rock Salt', cursive;
+}
+
+.title-col {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+}
