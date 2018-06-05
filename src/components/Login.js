@@ -12,7 +12,7 @@ const Login = () => {
             <form>
               <label>
                 Email:
-                <input type="text" />
+                <input type="email" />
               </label>
               <label>
                 Password:
