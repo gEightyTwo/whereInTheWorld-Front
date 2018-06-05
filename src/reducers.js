@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { SET_CITY_INFO, SET_CITY_IMG, SET_CITY_SCORES } from './actions'
+import { SET_CITY_INFO, SET_CITY_IMG, SET_CITY_SCORES, SET_CITY_WITH_MOST_COMMENTS } from './actions'
 
 
 const cityInfo = (state = [], action) => {
@@ -27,9 +27,18 @@ const cityScores = (state = [], action) => {
   }
 }
 
+const citiesWithMostComments = (state = [], action) => {
+  switch(action.type){
+    case SET_CITY_WITH_MOST_COMMENTS:
+      return action.payload
+    default:
+      return state
+  }
+}
 
 
 
 
 
-export default combineReducers({ cityInfo, cityImages, cityScores })
+
+export default combineReducers({ cityInfo, cityImages, cityScores, citiesWithMostComments })
