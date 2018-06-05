@@ -41,7 +41,7 @@ class Home extends Component {
         <div className='card-display-header'>
         <h5>Here are a few cities that our users have commented on the most</h5>
         </div>
-        {/* <CityCard /> */}
+        <CityCard />
         </Row>
       </div>
     );
