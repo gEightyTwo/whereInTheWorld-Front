@@ -10,7 +10,7 @@ const cityInfo = (state = [], action) => {
       return state
   }
 }
-const cityImages= (state = [], action) => {
+const cityImages= (state = {}, action) => {
   switch(action.type){
     case SET_CITY_IMG:
       return action.payload

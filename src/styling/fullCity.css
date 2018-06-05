@@ -1,5 +1,8 @@
-#container {
-  margin: 20px;
-  width: 400px;
-  height: 8px;
+Col {
+  font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+#city-top{
+  width: 100%;
+  height: auto;
 }

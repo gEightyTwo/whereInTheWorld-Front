@@ -13,7 +13,7 @@ export const getCityInfo = (cityName) => {
   return(dispatch) => {
     axios.get(`https://api.teleport.org/api/urban_areas/slug:${cityName}/details/`)
     .then(response => {
-      dispatch({type: SET_CITY_INFO, payload: {categories: response.data.categories}})
+      dispatch({type: SET_CITY_INFO, payload: response.data.categories})
     })
   }
 }
@@ -22,7 +22,7 @@ export const getCityImg = (cityName) => {
   return(dispatch) => {
     axios.get(`https://api.teleport.org/api/urban_areas/slug:${cityName}/images/`)
     .then(response => {
-      dispatch({type: SET_CITY_IMG, payload: {photos: response.data.photos}})
+      dispatch({type: SET_CITY_IMG, payload: response.data.photos[0]})
     })
   }
 }
