@@ -1,0 +1,55 @@
+.brand-logo {
+    font-family: 'Rock Salt', cursive;
+}
+
+.welcome {
+    height: 100%;
+}
+
+.nav-row {
+    margin-bottom: 0;
+}
+
+.banner-row {
+    flex-direction: column;
+    height: 50vh;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/city-scape_blurred.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-bottom: 0;
+}
+
+.banner-header {
+    display: inline-block;
+    margin: 5px 0px;
+    padding: 0 5px;
+    border-radius: 2px;
+    background: white;
+    font-family: 'Proza Libre', sans-serif;
+    font-weight: bold;
+    filter: drop-shadow(2px 2px 2px black);
+}
+
+.buttons {
+    display:flex;
+    justify-content: space-around;
+    margin: auto;
+}
+
+.city-card-display-row {
+    background: url('../images/funky-lines.png') top repeat;
+}
+
+.card-display-header {
+    display: inline-block;
+    margin: 5px 0px;
+    padding: 0 5px;
+    border-radius: 2px;
+    background: white;
+    font-family: 'Proza Libre', sans-serif;
+    font-weight: bold;
+    filter: drop-shadow(2px 2px 2px black);
+}
+
+
+
