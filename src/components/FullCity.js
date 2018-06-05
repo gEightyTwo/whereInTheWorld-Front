@@ -33,8 +33,12 @@ class FullCity extends Component{
           this.props.cityScores.categories &&  this.props.cityScores.categories.map(category => {
             return (
               <li>
-                <div className="collapsible-header">{category.name}
-                  <span><Line percent={category.score_out_of_10 * 10} trailWidth=".5" strokeLinecap="square" strokeWidth="1" strokeColor={category.color}/></span>
+                <div className="collapsible-header">
+                  <Row>
+                    <Col s={3}>{category.name}</Col>
+                    <Col s={1}>{Math.round(category.score_out_of_10)}/10</Col>
+                    <Col s={8}><Line percent={category.score_out_of_10 * 10} trailWidth=".5" strokeLinecap="square" strokeWidth="1" strokeColor={category.color}/></Col>
+                  </Row>
                 </div>
                 <div className="collapsible-body"><p>{category.score_out_of_10}</p></div>
               </li>
