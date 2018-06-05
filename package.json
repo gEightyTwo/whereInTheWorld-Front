@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "progressbar.js": "^1.0.1",
+    "rc-progress": "^2.2.5",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-materialize": "^2.2.1",
