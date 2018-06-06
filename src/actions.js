@@ -6,7 +6,46 @@ export const SET_CITY_IMG = 'SET_CITY_IMG'
 export const SET_CITY_SCORES = 'SET_CITY_SCORES'
 export const SET_CITY_WITH_MOST_COMMENTS = 'SET_CITY_WITH_MOST_COMMENTS'
 
+const matchCat = (attArray, cityScores) => {
+  return attArray.every(att => {
 
+    const match = cityScores.find(obj => {
+      // console.log('Matching:', att, obj);
+      return (obj.name === att.name && obj.score_out_of_10 >= att.score_out_of_10)
+    })
+
+    // console.log('GOOD?', match);
+    if(match){
+      return true
+    }
+  })
+}
+
+
+export const getCitiesByAtt = (attArray) => {
+  return(dispatch) => {
+    axios.get(`https://api.teleport.org/api/urban_areas/`)
+      .then(response => {
+        const cityScores = response.data._links['ua:item'].map(cityLink => {
+          return axios.get(`${cityLink.href}scores`)
+            .then(res => {
+              return {
+                name: cityLink.name,
+                scores: res.data.categories
+              }
+            })
+        })
+
+        Promise.all(cityScores).then(response => {
+          const matchedCities = response.filter(city => {
+            console.log(city, matchCat(attArray, city.scores))
+            return matchCat(attArray, city.scores)
+          })
+          console.log(matchedCities);
+        })
+      })
+    }
+}
 
 export const getCityInfo = (cityName) => {
   cityName = cityName.replace(/\s+/g, '-').toLowerCase();
