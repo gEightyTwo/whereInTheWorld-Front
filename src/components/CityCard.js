@@ -1,32 +1,16 @@
-import React, { Component } from "react";
-import { Card, CardTitle, Row, Col } from 'react-materialize'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import {getCityScores, getCityInfo, getCityImg} from '../actions'
+import React from "react";
+import { Card, CardTitle } from 'react-materialize'
 import '../styling/CityCard.css'
 
-class CityCard extends Component {
-  constructor(props){
-    super(props)
-  }
-
-  render(){
-    return (
-      <Card
-        className="small city-card"
-        header={<CardTitle image={this.props.city.img}>{this.props.city.name}</CardTitle>}
-      >
-        I am a very simple card. I am good at containing small bits of
-        information. I am convenient because I require little markup to use
-        effectively.
-      </Card>
-    );
-  }
+const CityCard = ({city}) => {
+  return (
+    <Card
+      className="small city-card"
+      header={<CardTitle image={city.img}>{city.name}</CardTitle>}
+    >
+      {city.summary}
+    </Card>
+  );
 };
 
-const mapStateToProps = ({ cityInfo, cityImages, cityScores }) => ({ cityInfo, cityImages, cityScores })
-
-const mapDispatchToProps = (dispatch) => bindActionCreators({getCityScores, getCityInfo, getCityImg}, dispatch)
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(CityCard)
+export default CityCard;
