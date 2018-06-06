@@ -15,7 +15,7 @@ class FullCity extends Component{
     super(props)
     console.log(props)
   }
-  handleSearch = event => {
+  handleNameSearch = event => {
     event.preventDefault()
     const cityName = event.target.citySearch.value
     this.props.getCitiesByAtt([{name:'Housing', score_out_of_10: 8}, {name:'Cost of Living', score_out_of_10: 8}, {name:'Education', score_out_of_10: 3}])
@@ -37,15 +37,6 @@ class FullCity extends Component{
             <AttributeModal />
           </div>
         </Row>
-      <Row id="formRow">
-        <Col s={4}></Col>
-        <Col s={4}>
-          <form onSubmit={this.handleSearch}>
-            <div className="form-group"><input type="text" name="citySearch"/></div><span><button type="submit">Submit</button></span>
-          </form>
-        </Col>
-        <Col s={4}></Col>
-      </Row>
       {
         this.props.cityImages.image && <img id="city-top" src={this.props.cityImages.image.web} alt="city"/>
       }
