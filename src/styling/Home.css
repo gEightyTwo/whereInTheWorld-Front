@@ -38,6 +38,9 @@
 
 .city-card-display-row {
     background: url('../images/funky-lines.png') top repeat;
+    margin-bottom: 0;
+    /* display: flex;
+    justify-content: center; */
 }
 
 .card-display-header {
@@ -51,5 +54,10 @@
     filter: drop-shadow(2px 2px 2px black);
 }
 
+.city-card {
+    background: url('../images/funky-lines.png') top repeat;
+    margin-bottom: 0;
+    font-family: 'Proza Libre', sans-serif;
+}
 
 

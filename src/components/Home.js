@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Button } from "react-materialize";
+import { Row, Button, Col } from "react-materialize";
 import "../styling/Home.css";
 import {getCityCard} from '../actions.js'
 import CityCard from "./CityCard";
@@ -49,11 +49,16 @@ class Home extends Component {
               Here are a few cities that our users have commented on the most
             </h5>
           </div>
+          
+        </Row>
+        <Row className='city-card'>
+        <Col s={8} className="offset-s2">
           <div>
           {this.props.citiesWithMostComments.map(city => {
               return <CityCard key={city.id} city={city} />
           })}
           </div>
+          </Col>
         </Row>
       </div>
     );
