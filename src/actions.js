@@ -79,8 +79,9 @@ export const getCityCard = () => {
     return(dispatch) => {
         request('/cities')
         .then(response => {
-            console.log(response.data)
             dispatch({type: SET_CITY_WITH_MOST_COMMENTS, payload: response.data.data})
         })
     }
 }
+
+

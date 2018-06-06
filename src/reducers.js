@@ -41,4 +41,5 @@ const citiesWithMostComments = (state = [], action) => {
 
 
 
+
 export default combineReducers({ cityInfo, cityImages, cityScores, citiesWithMostComments })
