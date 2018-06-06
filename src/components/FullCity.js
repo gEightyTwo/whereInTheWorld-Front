@@ -1,13 +1,14 @@
 import React, {Component} from "react";
-import { Row, Col } from "react-materialize";
+import { Row, Col, Input, Modal, Button } from "react-materialize";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {getCityScores, getCityInfo, getCityImg} from '../actions'
 import Parser from 'html-react-parser';
-
 import { Line } from 'rc-progress';
-
-import '../styling/fullCity.css'
+import '../styling/fullCity.css';
+import Navbar from "./Navbar";
+import AttributeModal from "./AttributeModal"
+import CityModal from "./CityModal"
 
 class FullCity extends Component{
   constructor(props){
@@ -25,6 +26,16 @@ class FullCity extends Component{
   render(){
     return (
       <div>
+      <Navbar />
+        <Row className="banner-row center-align valign-wrapper">
+          <div className="banner-header">
+            <h5>Get started by searching by city or filtering by attribute</h5>
+          </div>
+          <div className="buttons">
+            <CityModal />
+            <AttributeModal />
+          </div>
+        </Row>
       <Row id="formRow">
         <Col s={4}></Col>
         <Col s={4}>

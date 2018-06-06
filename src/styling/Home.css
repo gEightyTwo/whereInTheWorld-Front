@@ -42,6 +42,11 @@
     width: 100%;
 }
 
+#modal_2 {
+    width: 40%;
+    max-height: 80%;
+}
+
 .modal-content {
     font-family: 'Proza Libre', sans-serif;
 }
