@@ -24,11 +24,10 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <Navbar />
-        <Row className="banner-row center-align valign-wrapper">
+        <Row className="banner-row center-align">
           <div className="banner-header">
             <h5>Get started by searching by city or filtering by attribute</h5>
           </div>
