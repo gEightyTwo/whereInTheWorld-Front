@@ -33,11 +33,43 @@
 .buttons {
     display:flex;
     justify-content: space-around;
+    font-family: 'Proza Libre', sans-serif;
+    font-size: 16px;
     margin: auto;
+}
+
+.submit-button {
+    width: 100%;
+}
+
+.modal-content {
+    font-family: 'Proza Libre', sans-serif;
+}
+
+#input_1 {
+    font-size: 20px;
+}
+
+.modal-close {
+    font-family: 'Proza Libre', sans-serif;
+}
+
+.input-col {
+    display: flex;
+    flex-direction: row;
+}
+
+.range-field {
+    margin: 0;
+}
+
+input.range-input {
+    margin: 2px;
 }
 
 .city-card-display-row {
     background: url('../images/funky-lines.png') top repeat;
+    margin-bottom: 0;
 }
 
 .card-display-header {
@@ -50,6 +82,13 @@
     font-weight: bold;
     filter: drop-shadow(2px 2px 2px black);
 }
+
+.city-card {
+    background: url('../images/funky-lines.png') top repeat;
+    margin-bottom: 0;
+    font-family: 'Proza Libre', sans-serif;
+}
+
 
 
 
