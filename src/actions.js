@@ -5,6 +5,7 @@ export const SET_CITY_INFO = 'SET_CURRENT_CITY'
 export const SET_CITY_IMG = 'SET_CITY_IMG'
 export const SET_CITY_SCORES = 'SET_CITY_SCORES'
 export const SET_CITY_WITH_MOST_COMMENTS = 'SET_CITY_WITH_MOST_COMMENTS'
+export const SET_MATCHED_CITIES = 'SET_MATCHED_CITIES'
 
 const matchCat = (attArray, cityScores) => {
   return attArray.every(att => {
@@ -42,6 +43,7 @@ export const getCitiesByAtt = (attArray) => {
             return matchCat(attArray, city.scores)
           })
           console.log(matchedCities);
+          dispatch({type:SET_MATCHED_CITIES, payload: matchedCities})
         })
       })
     }

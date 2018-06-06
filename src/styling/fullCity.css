@@ -9,3 +9,12 @@ Col {
 #formRow{
   height: 6vh;
 }
+
+.banner-row {
+    flex-direction: column;
+    height: 50vh;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/city-scape_blurred.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-bottom: 0;
+}
