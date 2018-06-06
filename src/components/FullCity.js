@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Row, Col, Input, Modal, Button } from "react-materialize";
+import { Row, Col } from "react-materialize";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {getCityScores, getCityInfo, getCityImg} from '../actions'
@@ -27,10 +27,7 @@ class FullCity extends Component{
     return (
       <div>
       <Navbar />
-        <Row className="banner-row center-align valign-wrapper">
-          <div className="banner-header">
-            <h5>Get started by searching by city or filtering by attribute</h5>
-          </div>
+        <Row className="banner-row">
           <div className="buttons">
             <CityModal />
             <AttributeModal />

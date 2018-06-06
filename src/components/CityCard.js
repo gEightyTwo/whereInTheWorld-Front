@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { Card, CardTitle, Row, Col } from 'react-materialize'
+import { Card, CardTitle } from 'react-materialize'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {getCityScores, getCityInfo, getCityImg} from '../actions'
 import '../styling/CityCard.css'
 
 class CityCard extends Component {
-  constructor(props){
-    super(props)
-  }
+  
 
   render(){
     return (
