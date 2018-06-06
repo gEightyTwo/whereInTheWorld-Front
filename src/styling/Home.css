@@ -89,8 +89,14 @@ input.range-input {
     filter: drop-shadow(2px 2px 2px black);
 }
 
-.city-card {
+.city-display {
     background: url('../images/funky-lines.png') top repeat;
+    margin-bottom: 0;
+    font-family: 'Proza Libre', sans-serif;
+}
+
+.city-card {
+    background-color: white;
     margin-bottom: 0;
     font-family: 'Proza Libre', sans-serif;
 }

@@ -2,14 +2,13 @@ import React, {Component} from "react";
 import { Modal, Row, Col, Input, Button } from "react-materialize";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router-dom'
 import {getCitiesByAtt, getCityScores, getCityInfo, getCityImg} from '../actions'
 
 
 
 class CityModal extends Component {
-  constructor(props){
-    super(props)
-  }
+  
 
   handleNameSearch = event => {
     event.preventDefault()
@@ -18,6 +17,7 @@ class CityModal extends Component {
     this.props.getCityScores(cityName)
     this.props.getCityInfo(cityName)
     this.props.getCityImg(cityName)
+    this.props.history.push('./FullCity')
   }
 
   render(){
@@ -30,7 +30,7 @@ class CityModal extends Component {
         <Row>
           <Col s={4} className="offset-s4">
             <form onSubmit={this.handleNameSearch}>
-              <Input s={12} name="citySearch" label="City Name" />
+              <Input s={12} name="citySearch" label="City Name" required='true'/>
               <Button type="submit" className="submit-button modal-close">
                 Submit
               </Button>
@@ -47,4 +47,4 @@ const mapStateToProps = ({ cityInfo, cityImages, cityScores }) => ({ cityInfo, c
 const mapDispatchToProps = (dispatch) => bindActionCreators({getCitiesByAtt, getCityScores, getCityInfo, getCityImg}, dispatch)
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CityModal)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CityModal))

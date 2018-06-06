@@ -43,7 +43,7 @@ class Home extends Component {
             </h5>
           </div>
         </Row>
-        <Row className="city-card">
+        <Row className="city-display">
           <Col s={8} className="offset-s2">
             <div>
               {

@@ -6,10 +6,6 @@ import { getCitiesByAtt } from "../actions";
 
 class AttributeModal extends Component {
   
-    componentDidMount = () => {
-        this.props.getCitiesByAtt()
-    }
-  
     render(){
       return (
     <Modal
@@ -21,30 +17,39 @@ class AttributeModal extends Component {
         <form
           onSubmit={event => {
               event.preventDefault()
-            const fields = ["housing","costOfLiving", "startUps", "ventureCapital", "travelConnectivity", "commute", "businessFreedom", "safety", "healthcare", "education", "environmentalQuality", "economy", "taxation", "internetAccess", "leisureCulture", "tolerance", "outdoors"]
-            const checked = fields.map(f => ({name: f, checked: event.target[f].checked, score:event.target[f+'-score'].value}))
+            const fields = ["Housing","Cost_of_Living", "Start_Ups", "Venture_Capital", "Travel_Connectivity", "Commute", "Business_Freedom", "Safety", "Healthcare", "Education", "Environmental_Quality", "Economy", "Taxation", "Internet_Access", "Leisure_Culture", "Tolerance", "Outdoors"]
+
+            const checked = fields.map(f => {
+                let nameArray = f.split('_')
+                let fName = nameArray.reduce((acc,ele) => {
+                    if(nameArray.indexOf(ele) !== nameArray.length-1) acc += `${ele} `
+                    else acc += ele
+                    return acc 
+                }, "")
+                return {name: fName, checked: event.target[f].checked, score:event.target[f+'-score'].value}
+                })
 
             const checkedValues = checked.filter(obj => obj.checked)
 
             const data = checkedValues.map(obj => ({name: obj.name, score_out_of_10: obj.score}))
-            
+            this.props.getCitiesByAtt(data)
           }}
         >
           <Col className="input-col">
-            <Input name="housing" type="checkbox" value="red" label="Housing" />
+            <Input name="Housing" type="checkbox" value="red" label="Housing" />
             <label className="range-field">
               <input
                 className="range-input"
                 type="range"
                 min="0"
                 max="10"
-                name="housing-score"
+                name="Housing-score"
               />
             </label>
           </Col>
           <Col className="input-col">
             <Input
-              name="costOfLiving"
+              name="Cost_of_Living"
               type="checkbox"
               value="red"
               label="Cost of Living"
@@ -55,13 +60,13 @@ class AttributeModal extends Component {
                 type="range"
                 min="0"
                 max="10"
-                name="costOfLiving-score"
+                name="Cost_of_Living-score"
               />
             </label>
           </Col>
           <Col className="input-col">
             <Input
-              name="startUps"
+              name="Start_Ups"
               type="checkbox"
               value="red"
               label="Start-Ups"
@@ -72,13 +77,13 @@ class AttributeModal extends Component {
                 type="range"
                 min="0"
                 max="10"
-                name="startUps-score"
+                name="Start_Ups-score"
               />
             </label>
           </Col>
           <Col className="input-col">
             <Input
-              name="ventureCapital"
+              name="Venture_Capital"
               type="checkbox"
               value="red"
               label="Venture Captial"
@@ -89,13 +94,13 @@ class AttributeModal extends Component {
                 type="range"
                 min="0"
                 max="10"
-                name="ventureCapital-score"
+                name="Venture_Capital-score"
               />
             </label>
           </Col>
           <Col className="input-col">
             <Input
-              name="travelConnectivity"
+              name="Travel_Connectivity"
               type="checkbox"
               value="red"
               label="Travel Connectivity"
@@ -106,25 +111,25 @@ class AttributeModal extends Component {
                 type="range"
                 min="0"
                 max="10"
-                name="travelConnectivity-score"
+                name="Travel_Connectivity-score"
               />
             </label>
           </Col>
           <Col className="input-col">
-            <Input name="commute" type="checkbox" value="red" label="Commute" />
+            <Input name="Commute" type="checkbox" value="red" label="Commute" />
             <label className="range-field">
               <input
                 className="range-input"
                 type="range"
                 min="0"
                 max="10"
-                name="commute-score"
+                name="Commute-score"
               />
             </label>
           </Col>
           <Col className="input-col">
             <Input
-              name="businessFreedom"
+              name="Business_Freedom"
               type="checkbox"
               value="red"
               label="Business Freedom"
@@ -135,25 +140,25 @@ class AttributeModal extends Component {
                 type="range"
                 min="0"
                 max="10"
-                name="businessFreedom-score"
+                name="Business_Freedom-score"
               />
             </label>
           </Col>
           <Col className="input-col">
-            <Input name="safety" type="checkbox" value="red" label="Safety" />
+            <Input name="Safety" type="checkbox" value="red" label="Safety" />
             <label className="range-field">
               <input
                 className="range-input"
                 type="range"
                 min="0"
                 max="10"
-                name="safety-score"
+                name="Safety-score"
               />
             </label>
           </Col>
           <Col className="input-col">
             <Input
-              name="healthcare"
+              name="Healthcare"
               type="checkbox"
               value="red"
               label="Healthcare"
@@ -164,13 +169,13 @@ class AttributeModal extends Component {
                 type="range"
                 min="0"
                 max="10"
-                name="healthcare-score"
+                name="Healthcare-score"
               />
             </label>
           </Col>
           <Col className="input-col">
             <Input
-              name="education"
+              name="Education"
               type="checkbox"
               value="red"
               label="Education"
@@ -181,13 +186,13 @@ class AttributeModal extends Component {
                 type="range"
                 min="0"
                 max="10"
-                name="education-score"
+                name="Education-score"
               />
             </label>
           </Col>
           <Col className="input-col">
             <Input
-              name="environmentalQuality"
+              name="Environmental_Quality"
               type="checkbox"
               value="red"
               label="Environmental Quality"
@@ -198,37 +203,37 @@ class AttributeModal extends Component {
                 type="range"
                 min="0"
                 max="10"
-                name="environmentalQuality-score"
+                name="Environmental_Quality-score"
               />
             </label>
           </Col>
           <Col className="input-col">
-            <Input name="economy" type="checkbox" value="red" label="Economy" />
+            <Input name="Economy" type="checkbox" value="red" label="Economy" />
             <label className="range-field">
               <input
                 className="range-input"
                 type="range"
                 min="0"
                 max="10"
-                name="economy-score"
+                name="Economy-score"
               />
             </label>
           </Col>
           <Col className="input-col">
-            <Input name="taxation" type="checkbox" value="red" label="Taxation" />
+            <Input name="Taxation" type="checkbox" value="red" label="Taxation" />
             <label className="range-field">
               <input
                 className="range-input"
                 type="range"
                 min="0"
                 max="10"
-                name="taxation-score"
+                name="Taxation-score"
               />
             </label>
           </Col>
           <Col className="input-col">
             <Input
-              name="internetAccess"
+              name="Internet_Access"
               type="checkbox"
               value="red"
               label="Internet Access"
@@ -239,13 +244,13 @@ class AttributeModal extends Component {
                 type="range"
                 min="0"
                 max="10"
-                name="internetAccess-score"
+                name="Internet_Access-score"
               />
             </label>
           </Col>
           <Col className="input-col">
             <Input
-              name="leisureCulture"
+              name="Leisure_Culture"
               type="checkbox"
               value="red"
               label="Leisure & Culture"
@@ -256,13 +261,13 @@ class AttributeModal extends Component {
                 type="range"
                 min="0"
                 max="10"
-                name="leisureCulture-score"
+                name="Leisure_Culture-score"
               />
             </label>
           </Col>
           <Col className="input-col">
             <Input
-              name="tolerance"
+              name="Tolerance"
               type="checkbox"
               value="red"
               label="Tolerance"
@@ -273,19 +278,19 @@ class AttributeModal extends Component {
                 type="range"
                 min="0"
                 max="10"
-                name="tolerance-score"
+                name="Tolerance-score"
               />
             </label>
           </Col>
           <Col className="input-col">
-            <Input name="outdoors" type="checkbox" value="red" label="Outdoors" />
+            <Input name="Outdoors" type="checkbox" value="red" label="Outdoors" />
             <label className="range-field">
               <input
                 className="range-input"
                 type="range"
                 min="0"
                 max="10"
-                name="outdoors-score"
+                name="Outdoors-score"
               />
             </label>
           </Col>
@@ -301,7 +306,11 @@ class AttributeModal extends Component {
 }
 };
 
+const mapStateToProps = ({ cityFoundWithSetAttributes }) => ({
+    cityFoundWithSetAttributes
+  });
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ getCitiesByAtt }, dispatch);
 
-export default connect(mapDispatchToProps)(AttributeModal);
+export default connect(mapStateToProps, mapDispatchToProps)(AttributeModal);
