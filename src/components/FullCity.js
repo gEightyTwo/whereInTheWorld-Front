@@ -35,7 +35,7 @@ class FullCity extends Component{
         <Col s={4}></Col>
       </Row>
       {
-        this.props.cityImages.image && <img id="city-top" src={this.props.cityImages.image.web} alt="city image"/>
+        this.props.cityImages.image && <img id="city-top" src={this.props.cityImages.image.web} alt="city"/>
       }
       <Row>
         <Col s={1}></Col>
