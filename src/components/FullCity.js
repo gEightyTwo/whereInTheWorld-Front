@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { Row, Col } from "react-materialize";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {getCityScores, getCityInfo, getCityImg} from '../actions'
+import {getCitiesByAtt, getCityScores, getCityInfo, getCityImg} from '../actions'
 import Parser from 'html-react-parser';
 
 import { Line } from 'rc-progress';
@@ -17,6 +17,7 @@ class FullCity extends Component{
   handleSearch = event => {
     event.preventDefault()
     const cityName = event.target.citySearch.value
+    this.props.getCitiesByAtt([{name:'Housing', score_out_of_10: 8}, {name:'Cost of Living', score_out_of_10: 8}, {name:'Education', score_out_of_10: 3}])
     this.props.getCityScores(cityName)
     this.props.getCityInfo(cityName)
     this.props.getCityImg(cityName)
@@ -110,7 +111,7 @@ class FullCity extends Component{
 
 const mapStateToProps = ({ cityInfo, cityImages, cityScores }) => ({ cityInfo, cityImages, cityScores })
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({getCityScores, getCityInfo, getCityImg}, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({getCitiesByAtt, getCityScores, getCityInfo, getCityImg}, dispatch)
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(FullCity)
