@@ -1,49 +1,59 @@
-import { combineReducers } from 'redux'
-import { SET_CITY_INFO, SET_CITY_IMG, SET_CITY_SCORES, SET_CITY_WITH_MOST_COMMENTS } from './actions'
-
+import { combineReducers } from "redux";
+import {
+  SET_CITY_INFO,
+  SET_CITY_IMG,
+  SET_CITY_SCORES,
+  SET_CITY_WITH_MOST_COMMENTS,
+  SET_MATCHED_CITIES
+} from "./actions";
 
 const cityInfo = (state = [], action) => {
-  switch(action.type){
+  switch (action.type) {
     case SET_CITY_INFO:
-      return action.payload
+      return action.payload;
     default:
-      return state
+      return state;
   }
-}
-const cityImages= (state = {}, action) => {
-  switch(action.type){
+};
+const cityImages = (state = {}, action) => {
+  switch (action.type) {
     case SET_CITY_IMG:
-      return action.payload
+      return action.payload;
     default:
-      return state
+      return state;
   }
-}
+};
 const cityScores = (state = [], action) => {
-  switch(action.type){
+  switch (action.type) {
     case SET_CITY_SCORES:
-      return action.payload
+      return action.payload;
     default:
-      return state
+      return state;
   }
-}
+};
 
 const citiesWithMostComments = (state = [], action) => {
-  switch(action.type){
+  switch (action.type) {
     case SET_CITY_WITH_MOST_COMMENTS:
-      return action.payload
+      return action.payload;
     default:
-      return state
+      return state;
   }
-}
+};
 
-// const cityFoundWithSetAttributes = (state = [], action) => {
-//   swtich(action.type){
-//     case 
-//   }
-// }
+const cityFoundWithSetAttributes = (state = [], action) => {
+  switch (action.type) {
+    case SET_MATCHED_CITIES:
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
-
-
-
-
-export default combineReducers({ cityInfo, cityImages, cityScores, citiesWithMostComments })
+export default combineReducers({
+  cityInfo,
+  cityImages,
+  cityScores,
+  citiesWithMostComments,
+  cityFoundWithSetAttributes
+});
