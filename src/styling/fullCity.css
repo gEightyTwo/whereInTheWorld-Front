@@ -6,3 +6,6 @@ Col {
   width: 100%;
   height: auto;
 }
+#formRow{
+  height: 6vh;
+}
