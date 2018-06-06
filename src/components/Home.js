@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Row, Button, Col } from "react-materialize";
 import "../styling/Home.css";
-import {getCityCard} from '../actions.js'
+import {getCityCard, getCityScores} from '../actions.js'
 import CityCard from "./CityCard";
 
 class Home extends Component {
@@ -67,7 +67,6 @@ class Home extends Component {
 
 const mapStateToProps = ({ citiesWithMostComments }) => ({ citiesWithMostComments })
 
-const mapDispatchToProps = dispatch => (bindActionCreators({ getCityCard }, dispatch))
+const mapDispatchToProps = dispatch => (bindActionCreators({ getCityCard, getCityScores }, dispatch))
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
-

@@ -3,6 +3,7 @@ import { Row, Col } from "react-materialize";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {getCityScores, getCityInfo, getCityImg} from '../actions'
+import Parser from 'html-react-parser';
 
 import { Line } from 'rc-progress';
 
@@ -24,14 +25,11 @@ class FullCity extends Component{
   render(){
     return (
       <div>
-      <Row>
+      <Row id="formRow">
         <Col s={4}></Col>
         <Col s={4}>
           <form onSubmit={this.handleSearch}>
-            <div className="form-group">
-              <input type="text" name="citySearch"/>
-            </div>
-            <button type="submit">Submit</button>
+            <div className="form-group"><input type="text" name="citySearch"/></div><span><button type="submit">Submit</button></span>
           </form>
         </Col>
         <Col s={4}></Col>
@@ -42,6 +40,7 @@ class FullCity extends Component{
       <Row>
         <Col s={1}></Col>
         <Col s={10}>
+          {this.props.cityScores.summary && Parser(this.props.cityScores.summary)}
           <ul className="collapsible">
             {
               this.props.cityScores.categories &&  this.props.cityScores.categories.map((category,i) => {
@@ -50,8 +49,8 @@ class FullCity extends Component{
                     <div className="collapsible-header">
                       <Row>
                         <Col s={3}>{category.name}</Col>
-                        <Col s={1}>{Math.round(category.score_out_of_10)}/10</Col>
-                        <Col s={8}><Line percent={category.score_out_of_10 * 10} trailWidth=".5" strokeLinecap="square" strokeWidth="1" strokeColor={category.color}/></Col>
+                        <Col s={1}>{Math.round(category.score_out_of_10)}</Col>
+                        <Col s={8}><Line percent={category.score_out_of_10 * 10} trailWidth="1" strokeLinecap="round" strokeWidth="3" strokeColor={category.color}/></Col>
                       </Row>
                     </div>
                     <div className="collapsible-body">
