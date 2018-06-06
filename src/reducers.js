@@ -36,7 +36,11 @@ const citiesWithMostComments = (state = [], action) => {
   }
 }
 
-
+// const cityFoundWithSetAttributes = (state = [], action) => {
+//   swtich(action.type){
+//     case 
+//   }
+// }
 
 
 
