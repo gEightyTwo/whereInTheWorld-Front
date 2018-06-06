@@ -1,11 +1,17 @@
-import React from "react";
+import React, { Component } from "react";
 import { Modal, Button, Row, Col, Input } from "react-materialize";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getCityByAttribute } from "../actions2";
+import { getCitiesByAtt } from "../actions";
 
-const AttributeModal = props => {
-  return (
+class AttributeModal extends Component {
+  
+    componentDidMount = () => {
+        this.props.getCitiesByAtt()
+    }
+  
+    render(){
+      return (
     <Modal
       className="attributes-modal"
       header="Attributes"
@@ -20,13 +26,9 @@ const AttributeModal = props => {
 
             const checkedValues = checked.filter(obj => obj.checked)
 
-            const data = checkedValues.map(obj => {
-                return {name: obj.name, score_out_of_10: obj.score}
-            })
-                
-            console.log(data)
+            const data = checkedValues.map(obj => ({name: obj.name, score_out_of_10: obj.score}))
+            
           }}
-          className="modal-close"
         >
           <Col className="input-col">
             <Input name="housing" type="checkbox" value="red" label="Housing" />
@@ -288,7 +290,7 @@ const AttributeModal = props => {
             </label>
           </Col>
           <div>
-            <Button type="submit" className="submit-button">
+            <Button type="submit" className="submit-button modal-close">
               Submit
             </Button>
           </div>
@@ -296,9 +298,10 @@ const AttributeModal = props => {
       </Row>
     </Modal>
   );
+}
 };
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getCityByAttribute }, dispatch);
+  bindActionCreators({ getCitiesByAtt }, dispatch);
 
 export default connect(mapDispatchToProps)(AttributeModal);
