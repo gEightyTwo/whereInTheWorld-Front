@@ -32,7 +32,8 @@ export const getCitiesByAtt = (attArray) => {
             .then(res => {
               return {
                 name: cityLink.name,
-                scores: res.data.categories
+                scores: res.data.categories,
+                summary: res.data.summary
               }
             })
         })
@@ -42,8 +43,18 @@ export const getCitiesByAtt = (attArray) => {
             console.log(city, matchCat(attArray, city.scores))
             return matchCat(attArray, city.scores)
           })
-          console.log(matchedCities);
-          dispatch({type:SET_MATCHED_CITIES, payload: matchedCities})
+
+          const promisedCities = matchedCities.map((city) => {
+            const slugCity = city.name.replace(/\s+/g, '-').toLowerCase();
+            return axios.get(`https://api.teleport.org/api/urban_areas/slug:${slugCity}/images/`).then(res => {
+              city.img = res.data.photos[0].image.web
+              return city
+            })
+          })
+
+          Promise.all(promisedCities).then(citiesWithImages => {
+            dispatch({type:SET_MATCHED_CITIES, payload: citiesWithImages})
+          })
         })
       })
     }
