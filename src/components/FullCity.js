@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Row, Col, Tab, Tabs } from "react-materialize";
+import { Row, Col, Tab, Tabs, Card } from "react-materialize";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Parser from 'html-react-parser';
@@ -107,6 +107,19 @@ class FullCity extends Component{
               </ul>
             </Tab>
             <Tab title="Comments" active>
+              {
+                this.props.currentCityComments.length > 0 ?
+                this.props.currentCityComments.map(comment => {
+                  <Col s={12}>
+                    <Card className='blue-grey darken-1' textClassName='white-text' title={comment.title} actions={[<a href='#'>This is a link</a>]}>
+                      {comment.content}
+                    </Card>
+                  </Col>
+                }) : <Col s={12}>
+                        <Card className='blue-grey darken-1' textClassName='white-text' title='There are no comments for this city yet' actions={[<a href='#'>Be the First!</a>]}>
+                        </Card>
+                     </Col>
+              }
             </Tab>
           </Tabs>
           </Col>
@@ -117,7 +130,7 @@ class FullCity extends Component{
   }
 }
 
-const mapStateToProps = ({ cityInfo, cityImages, cityScores }) => ({ cityInfo, cityImages, cityScores })
+const mapStateToProps = ({ currentCityComments, cityInfo, cityImages, cityScores }) => ({ currentCityComments, cityInfo, cityImages, cityScores })
 
 // const mapDispatchToProps = (dispatch) => bindActionCreators({getCitiesByAtt, getCityScores, getCityInfo, getCityImg}, dispatch)
 
