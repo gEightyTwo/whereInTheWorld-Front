@@ -3,9 +3,10 @@ import { Modal, Button, Row, Col, Input } from "react-materialize";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCitiesByAtt } from "../actions";
+import { withRouter } from 'react-router-dom'
 
 class AttributeModal extends Component {
-  
+
     render(){
       return (
     <Modal
@@ -24,7 +25,7 @@ class AttributeModal extends Component {
                 let fName = nameArray.reduce((acc,ele) => {
                     if(nameArray.indexOf(ele) !== nameArray.length-1) acc += `${ele} `
                     else acc += ele
-                    return acc 
+                    return acc
                 }, "")
                 return {name: fName, checked: event.target[f].checked, score:event.target[f+'-score'].value}
                 })
@@ -33,6 +34,7 @@ class AttributeModal extends Component {
 
             const data = checkedValues.map(obj => ({name: obj.name, score_out_of_10: obj.score}))
             this.props.getCitiesByAtt(data)
+            this.props.history.push('./home')
           }}
         >
           <Col className="input-col">
@@ -313,4 +315,4 @@ const mapStateToProps = ({ cityFoundWithSetAttributes }) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ getCitiesByAtt }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(AttributeModal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AttributeModal));

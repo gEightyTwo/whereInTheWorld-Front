@@ -50,9 +50,7 @@ class Home extends Component {
                 // this.props.citiesWithMostComments.map(city => {
                 //   return <CityCard key={city.id} city={city} />;
                 // })
-                this.props.cityFoundWithSetAttributes.map(city => {
-                  return <CityCard key={city.id} city={city} />;
-                })
+                this.props.cityFoundWithSetAttributes && this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} />)
               }
             </div>
           </Col>
@@ -62,8 +60,8 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ citiesWithMostComments,  }) => ({
-  citiesWithMostComments
+const mapStateToProps = ({ citiesWithMostComments, cityFoundWithSetAttributes, cityInfo, cityImages, cityScores }) => ({
+  citiesWithMostComments, cityFoundWithSetAttributes, cityInfo, cityImages, cityScores
 });
 
 const mapDispatchToProps = dispatch =>
