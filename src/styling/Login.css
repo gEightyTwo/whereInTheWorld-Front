@@ -1,10 +1,11 @@
 .login-row {
+    font-family: 'Proza Libre', sans-serif;
     display: flex;
     justify-content: center;
     height: 100vh;
-    background-image: url('../images/nomad2.jpg');
+    /* background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/nomad2.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
 }
 
 .title-logo {
@@ -17,9 +18,4 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-}
-
-.login-button {
-    display: flex;
-    justify-content: center;
 }

@@ -12,6 +12,7 @@ const matchCat = (attArray, cityScores) => {
     const match = cityScores.find(obj => {
       return (obj.name === att.name && obj.score_out_of_10 >= att.score_out_of_10)
     })
+
     if(match){
       return true
     }

@@ -1,14 +1,16 @@
 import React from 'react'
 import { Row } from 'react-materialize'
+import { withAuthentication } from '../helper'
 
-const Navbar = () => {
+const Navbar = (props) => {
     return(
         <Row className="nav-row">
+        {console.log(props)}
           <nav>
             <div className="nav-wrapper">
               <a className="brand-logo">Nomad</a>
               <div className="valign-wrapper right welcome">
-                <p className="hide-on-med-and-down">{`Welcome, User`}</p>
+                <p className="hide-on-med-and-down">{`Welcome, ${props.authState.first_name}`}</p>
               </div>
             </div>
           </nav>
@@ -16,4 +18,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default withAuthentication(Navbar)
