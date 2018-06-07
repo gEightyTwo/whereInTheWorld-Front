@@ -9,16 +9,16 @@ export const SET_MATCHED_CITIES = 'SET_MATCHED_CITIES'
 
 const matchCat = (attArray, cityScores) => {
   return attArray.every(att => {
-
     const match = cityScores.find(obj => {
       // console.log('Matching:', att, obj);
       return (obj.name === att.name && obj.score_out_of_10 >= att.score_out_of_10)
     })
 
     // console.log('GOOD?', match);
-    if(match){
-      return true
-    }
+    return !!match
+    // if(match){
+    //   return true
+    // }
   })
 }
 
@@ -96,5 +96,7 @@ export const getCityCard = () => {
         })
     }
 }
+
+
 
 
