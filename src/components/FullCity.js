@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Parser from 'html-react-parser';
 import { Line } from 'rc-progress';
+import { request, withAuthentication } from '../helper'
 import '../styling/fullCity.css';
 import Navbar from "./Navbar";
 import AttributeModal from "./AttributeModal"
@@ -26,6 +27,21 @@ class FullCity extends Component{
   collapsible = (ele) => {
     window.$(ele).collapsible()
   }
+  getVotes = (commentId) => {
+    request(`/users/:${this.props.authState.id}/comments/:${commentId}/votes`)
+    .then(response => {
+      let totalVotes = response.data.reduce((acc, curr) => acc.vote + curr.vote).pop()
+      return totalVotes
+    })
+  }
+
+  vote = (commentId, val) => {
+    request(`/users/:${this.props.authState.id}/comments/:${commentId}/votes`, 'post', {val})
+    .then(response => {
+      console.log('hello')
+    })
+  }
+
   render(){
     return (
       <div>
@@ -45,7 +61,7 @@ class FullCity extends Component{
         <Col s={10}>
           {this.props.cityScores.summary && Parser(this.props.cityScores.summary)}
           <Tabs className='tab-demo z-depth-1'>
-            <Tab title="Stats" active="true">
+            <Tab title="Stats" active={true}>
               <ul ref={this.collapsible} className="collapsible">
               {
                 this.props.cityScores.categories &&  this.props.cityScores.categories.map((category,i) => {
@@ -111,7 +127,7 @@ class FullCity extends Component{
                 this.props.currentCityComments.length > 0 ?
                 this.props.currentCityComments.map(comment => {
                   <Col s={12}>
-                    <Card className='blue-grey darken-1' textClassName='white-text' title={comment.title} actions={[<a href='#'>Upvote</a>],[<a href='#'></a>],[<a href='#'>Downvote</a>]}>
+                    <Card className='blue-grey darken-1' textClassName='white-text' title={comment.title} actions={[<i className="material-icons">expand_less</i>],[<p>{this.getVotes(comment.id)}</p>],[<i className="material-icons">expand_more</i>]}>
                       {comment.content}
                     </Card>
                   </Col>
@@ -135,4 +151,4 @@ const mapStateToProps = ({ currentCityComments, cityInfo, cityImages, cityScores
 // const mapDispatchToProps = (dispatch) => bindActionCreators({getCitiesByAtt, getCityScores, getCityInfo, getCityImg}, dispatch)
 
 
-export default connect(mapStateToProps)(FullCity)
+export default withAuthentication(connect(mapStateToProps)(FullCity))
