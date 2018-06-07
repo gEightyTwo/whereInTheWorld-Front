@@ -47,10 +47,7 @@ class Home extends Component {
           <Col s={8} className="offset-s2">
             <div>
               {
-                this.props.cityFoundWithSetAttributes ?
-                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} />) :
-                this.props.citiesWithMostComments.map(city => <CityCard key={city.id} city={city} />)
-
+                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} />)
               }
             </div>
           </Col>
@@ -70,4 +67,12 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
+<<<<<<< HEAD
 )(Home);
+=======
+)(Home))
+
+{/* this.props.cityFoundWithSetAttributes.length ?
+                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} />) :
+                this.props.citiesWithMostComments.map(city => <CityCard key={city.id} city={city} />) */}
+>>>>>>> 717e069f4e9337bf7697d3f3f36060068149ceb3
