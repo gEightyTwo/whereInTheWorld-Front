@@ -2,13 +2,13 @@ import React, {Component} from "react";
 import { Row, Col } from "react-materialize";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-// import {getCitiesByAtt, getCityScores, getCityInfo, getCityImg} from '../actions'
 import Parser from 'html-react-parser';
 import { Line } from 'rc-progress';
 import '../styling/fullCity.css';
 import Navbar from "./Navbar";
 import AttributeModal from "./AttributeModal"
 import CityModal from "./CityModal"
+import CommentList from "./CommentList"
 
 class FullCity extends Component{
   constructor(props){
