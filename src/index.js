@@ -7,6 +7,12 @@ import thunk from 'redux-thunk'
 import reducers from './reducers'
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
+import { request, AuthenticationService } from './helper'
+
+request('/auth/token')
+.then((response)=>{
+  AuthenticationService.setAuthState(response.data)
+})
 
 const store = createStore(reducers, applyMiddleware(thunk))
 
