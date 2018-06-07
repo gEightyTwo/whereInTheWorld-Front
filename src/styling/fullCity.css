@@ -10,11 +10,22 @@ Col {
   height: 6vh;
 }
 
-.banner-row {
+.city-row {
     flex-direction: column;
     height: 50vh;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/city-scape_blurred.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     margin-bottom: 0;
+}
+.collapsible-row{
+  margin-bottom: 0px;
+}
+.pattern-back{
+  background: url('../images/funky-lines.png') top repeat;
+  margin-bottom: 0px;
+}
+.collapsible-body{
+  background-color: #f2f2f2;
 }

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Row, Col } from "react-materialize";
 import { getCityCard, getCityScores } from "../actions.js";
-import { withAuthentication } from '../helper'
 import "../styling/Home.css";
 import CityCard from "./CityCard";
 import Navbar from "./Navbar";
@@ -65,11 +64,15 @@ const mapStateToProps = ({ citiesWithMostComments, cityFoundWithSetAttributes, c
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ getCityCard, getCityScores }, dispatch);
 
-export default withAuthentication(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
+<<<<<<< HEAD
+)(Home);
+=======
 )(Home))
 
 {/* this.props.cityFoundWithSetAttributes.length ?
                 this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} />) :
                 this.props.citiesWithMostComments.map(city => <CityCard key={city.id} city={city} />) */}
+>>>>>>> 717e069f4e9337bf7697d3f3f36060068149ceb3
