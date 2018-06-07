@@ -4,6 +4,7 @@ import login from './Login'
 import fullcity from './FullCity'
 import home from './Home'
 import "../styling/App.css";
+import { AuthenticatedRoute } from '../helper'
 
 class App extends Component {
   render() {
@@ -12,8 +13,8 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={login} />
-            <Route exact path="/fullcity" component={fullcity} />
-            <Route exact path="/home" component={home} />
+            <AuthenticatedRoute exact path="/fullcity" component={fullcity} />
+            <AuthenticatedRoute exact path="/home" component={home} />
           </Switch>
         </BrowserRouter>
       </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 ////////////////////////////////////////////////////////////////////
@@ -80,13 +81,27 @@ class AuthService{
 export const AuthenticationService = new AuthService()
 
 ////////////////////////////////////////////////////////////////////
+/// AuthenticatedRoute /////////////////////////////////////////////
+
+const AuthRoute = (props) => {
+  if(props.authStatePending && !props.authState){
+    return props.loading || <div>Loading...</div>
+  }
+  else {
+    return props.authState ? <Route {...props} /> : <Redirect to='/' />
+  }
+}
+
+export const AuthenticatedRoute = withAuthentication(AuthRoute)
+
+////////////////////////////////////////////////////////////////////
 /// request ////////////////////////////////////////////////////////
 
 export const request = (path, method = 'get', body = null) => {
 
   const token = localStorage.getItem('token')
 
-  return axios(`http://localhost:3000${path}`, {
+  return axios(`${process.env.REACT_APP_BACKEND}${path}`, {
     method: method,
     headers: {
       'Content-Type': 'application/json',
