@@ -24,7 +24,8 @@ const Login = props => {
                     return request("/auth/token");
                   })
                   .then(response => {
-                    AuthenticationService.setAuthState(response.data);
+                    // console.log(response.data)
+                    AuthenticationService.setAuthState(response);
                     props.history.push("./Home");
                   });
               }}
