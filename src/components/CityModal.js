@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router-dom'
 import { getCommentsForCity, getCitiesByAtt, getCityScores, getCityInfo, getCityImg } from '../actions'
-
+import { request, withAuthentication } from '../helper'
 
 
 class CityModal extends Component {
-
+  constructor(props){
+    super(props)
+  }
 
   handleNameSearch = event => {
     event.preventDefault()
@@ -17,7 +19,22 @@ class CityModal extends Component {
     this.props.getCityScores(cityName)
     this.props.getCityInfo(cityName)
     this.props.getCityImg(cityName)
-    this.props.history.push('./fullcity')
+    if(this.props.cityInfo && this.props.cityImages && this.props.cityScores ){
+      request(`/cities/${cityName}`)
+      .then(response => {
+        console.log(response)
+        if(response){
+          this.props.getCommentsForCity(this.props.authState.id, response.data.id)
+          this.props.history.push('./fullcity')
+        } else {
+          request('/cities', 'post', {name:cityName}).then(res => {
+            this.props.history.push('./fullcity')
+          })
+        }
+      })
+    } else {
+      window.alert("No City by that Name");
+    }
   }
 
   render(){
@@ -47,4 +64,4 @@ const mapStateToProps = ({ cityInfo, cityImages, cityScores }) => ({ cityInfo, c
 const mapDispatchToProps = (dispatch) => bindActionCreators({getCommentsForCity, getCitiesByAtt, getCityScores, getCityInfo, getCityImg}, dispatch)
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CityModal))
+export default withAuthentication(withRouter(connect(mapStateToProps, mapDispatchToProps)(CityModal)))
