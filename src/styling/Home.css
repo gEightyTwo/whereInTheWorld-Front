@@ -2,14 +2,25 @@
     font-family: 'Rock Salt', cursive;
 }
 
+nav .brand-logo {
+    padding-left: 20px;
+}
+
+.logo-img {
+    height:100%;
+    width:100%;
+}
+
 .welcome {
     height: 100%;
     font-size: 20px;
     font-family: 'Proza Libre', sans-serif;
+    padding-right: 20px;
 }
 
 .nav-row {
     margin-bottom: 0;
+
 }
 
 .banner-row {
