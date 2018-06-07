@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Row, Col } from "react-materialize";
+import { Row, Col, Tab, Tabs } from "react-materialize";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 // import {getCitiesByAtt, getCityScores, getCityInfo, getCityImg} from '../actions'
@@ -30,78 +30,85 @@ class FullCity extends Component{
     return (
       <div>
       <Navbar />
-        <Row className="banner-row">
+      {
+        this.props.cityImages.image &&
+
+        <Row className="city-row" style={{backgroundImage: `url(${this.props.cityImages.image.web})`}}>
           <div className="buttons">
             <CityModal />
             <AttributeModal />
           </div>
         </Row>
-      {
-        this.props.cityImages.image && <img id="city-top" src={this.props.cityImages.image.web} alt="city"/>
       }
-      <Row>
+      <Row className="pattern-back">
         <Col s={1}></Col>
         <Col s={10}>
           {this.props.cityScores.summary && Parser(this.props.cityScores.summary)}
-          <ul ref={this.collapsible} className="collapsible">
-            {
-              this.props.cityScores.categories &&  this.props.cityScores.categories.map((category,i) => {
-                return (
-                  <li key={i}>
+          <Tabs className='tab-demo z-depth-1'>
+            <Tab title="Stats" active="true">
+              <ul ref={this.collapsible} className="collapsible">
+              {
+                this.props.cityScores.categories &&  this.props.cityScores.categories.map((category,i) => {
+                  return (
+                    <li key={i}>
                     <div className="collapsible-header">
-                      <Row>
-                        <Col s={3}>{category.name}</Col>
-                        <Col s={1}>{Math.round(category.score_out_of_10)}</Col>
-                        <Col s={8}><Line percent={category.score_out_of_10 * 10} trailWidth="1" strokeLinecap="round" strokeWidth="3" strokeColor={category.color}/></Col>
-                      </Row>
+                    <Row className="collapsible-row">
+                    <Col s={3}>{category.name}</Col>
+                    <Col s={1}>{Math.round(category.score_out_of_10)}</Col>
+                    <Col s={8}><Line percent={category.score_out_of_10 * 10} trailWidth="1" strokeLinecap="round" strokeWidth="3" strokeColor={category.color}/></Col>
+                    </Row>
                     </div>
                     <div className="collapsible-body">
-                      <ul>
-                      {
-                        this.props.cityInfo.filter(infoType => infoType.label === category.name)
-                          .map(infoType => {
-                              return infoType.data.map((indiv, i) => {
-                                let typeChecker;
-                                switch(indiv.type){
-                                  case 'float':
-                                    typeChecker = `${(indiv.float_value).toFixed(2)}`
-                                    break;
-                                  case 'int':
-                                    typeChecker = indiv.int_value
-                                    break;
-                                  case 'percent':
-                                    typeChecker = `%${(indiv.percent_value).toFixed(2)}`
-                                    break;
-                                  case 'url':
-                                    typeChecker = indiv.url_value
-                                    break;
-                                  case 'currency_dollar':
-                                    typeChecker = `$${(indiv.currency_dollar_value).toFixed(2)}`
-                                    break;
-                                  case 'string':
-                                    typeChecker = indiv.string_value
-                                    break;
-                                  default:
-                                    typeChecker = 'IDK'
-                                }
-                                return (
-                                  <li key={i}>
-                                    <Row>
-                                      <Col s={4}>{indiv.label}</Col>
-                                      <Col s={8}>{typeChecker}</Col>
-                                    </Row>
-                                  </li>
-                                )
-                              })
-                            })
+                    <ul>
+                    {
+                      this.props.cityInfo.filter(infoType => infoType.label === category.name)
+                      .map(infoType => {
+                        return infoType.data.map((indiv, i) => {
+                          let typeChecker;
+                          switch(indiv.type){
+                            case 'float':
+                            typeChecker = `${(indiv.float_value).toFixed(2)}`
+                            break;
+                            case 'int':
+                            typeChecker = indiv.int_value
+                            break;
+                            case 'percent':
+                            typeChecker = `%${(indiv.percent_value).toFixed(2)}`
+                            break;
+                            case 'url':
+                            typeChecker = indiv.url_value
+                            break;
+                            case 'currency_dollar':
+                            typeChecker = `$${(indiv.currency_dollar_value).toFixed(2)}`
+                            break;
+                            case 'string':
+                            typeChecker = indiv.string_value
+                            break;
+                            default:
+                            typeChecker = 'IDK'
                           }
-                      </ul>
+                          return (
+                            <li key={i}>
+                            <Row>
+                            <Col s={4}>{indiv.label}</Col>
+                            <Col s={8}>{typeChecker}</Col>
+                            </Row>
+                            </li>
+                          )
+                        })
+                      })
+                    }
+                    </ul>
                     </div>
-                  </li>
-                )
-              })
-            }
-            </ul>
+                    </li>
+                  )
+                })
+              }
+              </ul>
+            </Tab>
+            <Tab title="Comments" active>
+            </Tab>
+          </Tabs>
           </Col>
           <Col s={1}></Col>
         </Row>
