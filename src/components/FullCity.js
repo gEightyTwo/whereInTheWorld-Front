@@ -111,7 +111,7 @@ class FullCity extends Component{
                 this.props.currentCityComments.length > 0 ?
                 this.props.currentCityComments.map(comment => {
                   <Col s={12}>
-                    <Card className='blue-grey darken-1' textClassName='white-text' title={comment.title} actions={[<a href='#'>This is a link</a>]}>
+                    <Card className='blue-grey darken-1' textClassName='white-text' title={comment.title} actions={[<a href='#'>Upvote</a>],[<a href='#'></a>],[<a href='#'>Downvote</a>]}>
                       {comment.content}
                     </Card>
                   </Col>
