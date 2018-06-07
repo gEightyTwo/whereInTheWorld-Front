@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Row, Col } from "react-materialize";
+import { withAuthentication } from '../helper'
 import { getCityCard, getCityScores } from "../actions.js";
 import "../styling/Home.css";
 import CityCard from "./CityCard";
@@ -64,15 +65,11 @@ const mapStateToProps = ({ citiesWithMostComments, cityFoundWithSetAttributes, c
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ getCityCard, getCityScores }, dispatch);
 
-export default connect(
+export default withAuthentication(connect(
   mapStateToProps,
   mapDispatchToProps
-<<<<<<< HEAD
-)(Home);
-=======
 )(Home))
 
-{/* this.props.cityFoundWithSetAttributes.length ?
-                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} />) :
-                this.props.citiesWithMostComments.map(city => <CityCard key={city.id} city={city} />) */}
->>>>>>> 717e069f4e9337bf7697d3f3f36060068149ceb3
+ // this.props.cityFoundWithSetAttributes.length ?
+ //                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} />) :
+ //                this.props.citiesWithMostComments.map(city => <CityCard key={city.id} city={city} />) 
