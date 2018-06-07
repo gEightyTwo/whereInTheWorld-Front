@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "html-react-parser": "^0.4.6",
+    "materialize-css": "^0.100.2",
     "progressbar.js": "^1.0.1",
     "rc-progress": "^2.2.5",
     "react": "^16.4.0",

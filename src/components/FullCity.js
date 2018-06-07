@@ -24,7 +24,7 @@ class FullCity extends Component{
   //   this.props.getCityImg(cityName)
   // }
   collapsible = (ele) => {
-    console.log($)
+    window.$(ele).collapsible()
   }
   render(){
     return (
@@ -43,7 +43,7 @@ class FullCity extends Component{
         <Col s={1}></Col>
         <Col s={10}>
           {this.props.cityScores.summary && Parser(this.props.cityScores.summary)}
-          <ul ref={this.collapsible}className="collapsible">
+          <ul ref={this.collapsible} className="collapsible">
             {
               this.props.cityScores.categories &&  this.props.cityScores.categories.map((category,i) => {
                 return (

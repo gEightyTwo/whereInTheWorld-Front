@@ -47,10 +47,10 @@ class Home extends Component {
           <Col s={8} className="offset-s2">
             <div>
               {
-                // this.props.citiesWithMostComments.map(city => {
-                //   return <CityCard key={city.id} city={city} />;
-                // })
-                this.props.cityFoundWithSetAttributes && this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} />)
+                this.props.cityFoundWithSetAttributes.length ?
+                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} />) :
+                this.props.citiesWithMostComments.map(city => <CityCard key={city.id} city={city} />)
+
               }
             </div>
           </Col>
