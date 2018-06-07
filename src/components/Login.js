@@ -16,7 +16,7 @@ const Login = props => {
               onSubmit={event => {
                 event.preventDefault();
                 request("/auth/token", "post", {
-                  username: event.target.email.value,
+                  email: event.target.email.value,
                   password: event.target.password.value
                 })
                   .then(response => {
