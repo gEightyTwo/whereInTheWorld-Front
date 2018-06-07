@@ -10,15 +10,15 @@ export const SET_MATCHED_CITIES = 'SET_MATCHED_CITIES'
 const matchCat = (attArray, cityScores) => {
   return attArray.every(att => {
     const match = cityScores.find(obj => {
-      // console.log('Matching:', att, obj);
       return (obj.name === att.name && obj.score_out_of_10 >= att.score_out_of_10)
     })
 
-    // console.log('GOOD?', match);
-    return !!match
-    // if(match){
-    //   return true
-    // }
+    if(match){
+      return true
+    }
+    else{
+      return false
+    }
   })
 }
 
@@ -45,7 +45,12 @@ export const getCitiesByAtt = (attArray) => {
           })
 
           const promisedCities = matchedCities.map((city) => {
-            const slugCity = city.name.replace(/\s+/g, '-').toLowerCase();
+            let slugCity;
+            if(city.name === 'Galway'){
+              slugCity = 'gaillimh'
+            } else {
+              slugCity = city.name.replace(/\s+/g, '-').replace(/\./g,'').replace(/,/g,'').toLowerCase();
+            }
             return axios.get(`https://api.teleport.org/api/urban_areas/slug:${slugCity}/images/`).then(res => {
               city.img = res.data.photos[0].image.web
               return city
@@ -53,6 +58,7 @@ export const getCitiesByAtt = (attArray) => {
           })
 
           Promise.all(promisedCities).then(citiesWithImages => {
+            console.log(citiesWithImages)
             dispatch({type:SET_MATCHED_CITIES, payload: citiesWithImages})
           })
         })
@@ -61,7 +67,11 @@ export const getCitiesByAtt = (attArray) => {
 }
 
 export const getCityInfo = (cityName) => {
-  cityName = cityName.replace(/\s+/g, '-').toLowerCase();
+  if(cityName === 'Galway'){
+    cityName = 'gaillimh'
+  } else {
+    cityName = cityName.replace(/\s+/g, '-').replace(/\./g,'').replace(/,/g,'').toLowerCase();
+  }
   return(dispatch) => {
     axios.get(`https://api.teleport.org/api/urban_areas/slug:${cityName}/details/`)
     .then(response => {
@@ -70,7 +80,11 @@ export const getCityInfo = (cityName) => {
   }
 }
 export const getCityImg = (cityName) => {
-  cityName = cityName.replace(/\s+/g, '-').toLowerCase();
+  if(cityName === 'Galway'){
+    cityName = 'gaillimh'
+  } else {
+    cityName = cityName.replace(/\s+/g, '-').replace(/\./g,'').replace(/,/g,'').toLowerCase();
+  }
   return(dispatch) => {
     axios.get(`https://api.teleport.org/api/urban_areas/slug:${cityName}/images/`)
     .then(response => {
@@ -79,7 +93,11 @@ export const getCityImg = (cityName) => {
   }
 }
 export const getCityScores = (cityName) => {
-  cityName = cityName.replace(/\s+/g, '-').toLowerCase();
+  if(cityName === 'Galway'){
+    cityName = 'gaillimh'
+  } else {
+    cityName = cityName.replace(/\s+/g, '-').replace(/\./g,'').replace(/,/g,'').toLowerCase();
+  }
   return(dispatch) => {
     axios.get(`https://api.teleport.org/api/urban_areas/slug:${cityName}/scores/`)
     .then(response => {
@@ -96,7 +114,3 @@ export const getCityCard = () => {
         })
     }
 }
-
-
-
-
