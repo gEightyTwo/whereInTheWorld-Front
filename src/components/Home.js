@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Row, Col } from "react-materialize";
-import { withAuthentication } from '../helper'
-import { getCityCard, getCityScores } from "../actions.js";
+import { withAuthentication, request } from '../helper'
+import { getCityCard, getCityScores, getCityInfo, getCityImg } from "../actions.js";
 import "../styling/Home.css";
 import CityCard from "./CityCard";
 import Navbar from "./Navbar";
@@ -23,6 +23,7 @@ class Home extends Component {
   // componentDidMount = () => {
   //   this.props.getCityCard();
   // };
+
 
   render() {
     return (
@@ -48,7 +49,7 @@ class Home extends Component {
           <Col s={8} className="offset-s2">
             <div>
               {
-                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} />)
+                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} actions={{getCityCard:this.props.getCityCard, getCityScores:this.props.getCityScores, getCityInfo:this.props.getCityInfo, getCityImg:this.props.getCityImg}} />)
               }
             </div>
           </Col>
@@ -63,7 +64,7 @@ const mapStateToProps = ({ citiesWithMostComments, cityFoundWithSetAttributes, c
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getCityCard, getCityScores }, dispatch);
+  bindActionCreators({ getCityCard, getCityScores, getCityInfo, getCityImg }, dispatch);
 
 export default withAuthentication(connect(
   mapStateToProps,
