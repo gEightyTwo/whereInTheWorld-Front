@@ -28,6 +28,13 @@ class FullCity extends Component{
   collapsible = (ele) => {
     window.$(ele).collapsible()
   }
+  // tab = (ele) => {
+  //   window.$(ele).tab()
+  // }
+  // tabs = (ele) => {
+  //   window.$(ele).tabs()
+  // }
+
   handleAddComment = event => {
     event.preventDefault()
     this.props.postComment(event.target.title.value, event.target.content.value, this.props.authState.id, this.props.location.state.cI)
