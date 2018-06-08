@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Row, Col } from "react-materialize";
 import { withAuthentication, request } from '../helper'
-import { getCityCard, getCityScores, getCityInfo, getCityImg } from "../actions.js";
+import { getCityCard, getCityScores, getCityInfo, getCityImg, getCommentsForCity } from "../actions.js";
 import "../styling/Home.css";
 import CityCard from "./CityCard";
 import Navbar from "./Navbar";
@@ -42,7 +42,7 @@ class Home extends Component {
           <Col s={8} className="offset-s2">
             <div>
               {
-                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} actions={{getCityCard:this.props.getCityCard, getCityScores:this.props.getCityScores, getCityInfo:this.props.getCityInfo, getCityImg:this.props.getCityImg}} />)
+                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} actions={{getCityCard:this.props.getCityCard, getCityScores:this.props.getCityScores, getCityInfo:this.props.getCityInfo, getCityImg:this.props.getCityImg, getCommentsForCity: this.props.getCommentsForCity}} />)
               }
             </div>
           </Col>
