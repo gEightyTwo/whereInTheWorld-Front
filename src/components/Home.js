@@ -20,9 +20,9 @@ class Home extends Component {
     };
   }
 
-  componentDidMount = () => {
-    this.props.getCityCard();
-  };
+  // componentDidMount = () => {
+  //   this.props.getCityCard();
+  // };
 
   render() {
     return (
@@ -69,7 +69,3 @@ export default withAuthentication(connect(
   mapStateToProps,
   mapDispatchToProps
 )(Home))
-
- // this.props.cityFoundWithSetAttributes.length ?
- //                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} />) :
- //                this.props.citiesWithMostComments.map(city => <CityCard key={city.id} city={city} />) 
