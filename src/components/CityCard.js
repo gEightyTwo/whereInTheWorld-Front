@@ -7,26 +7,29 @@ import { withAuthentication, request } from '../helper'
 import '../styling/CityCard.css'
 import { Line } from 'rc-progress';
 import { getCommentsForCity, getCityScores, getCityInfo, getCityImg } from "../actions.js";
+import { withRouter } from 'react-router-dom'
 
-const handleCardClick = (cityName, actions) => {
+const handleCardClick = (cityName, actions, history, id, getCommentsForCity) => {
   actions.getCityScores(cityName)
   actions.getCityInfo(cityName)
   actions.getCityImg(cityName)
+  console.log(actions)
   request(`/cities/${cityName}`)
   .then(response => {
-      this.props.getCommentsForCity(this.props.authState.id, response.data.data.id)
-      this.props.history.push('./fullcity', {cI: response.data.data.id})
+    console.log(response.data)
+      getCommentsForCity(id, response.data.data.id)
+      history.push('./fullcity', {cI: response.data.data.id})
     })
 }
 
-const CityCard = ({city}, {actions}) => {
+const CityCard = ({city, actions, history, authState, getCommentsForCity}) => {
   city.scores.sort(function (b, a) {
     return a.score_out_of_10 - b.score_out_of_10;
   });
   const top4 = city.scores.slice(0,4)
   return (
     <Card
-      onClick={()=>handleCardClick(city.name, actions)}
+      onClick={()=>handleCardClick(city.name, actions, history, authState.id, getCommentsForCity)}
       className="city-card"
       header={<CardTitle image={city.img}>{city.name}</CardTitle>}
     >
@@ -49,6 +52,6 @@ const CityCard = ({city}, {actions}) => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ getCommentsForCity, getCityScores, getCityInfo, getCityImg }, dispatch);
 
-  export default withAuthentication(connect(
-    mapDispatchToProps
-  )(CityCard))
+  export default withAuthentication(withRouter(connect(
+   null,  mapDispatchToProps
+  )(CityCard)))
