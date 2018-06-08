@@ -42,7 +42,13 @@ class Home extends Component {
           <Col s={8} className="offset-s2">
             <div>
               {
-                this.props.cityFoundWithSetAttributes.map(city => <CityCard key={city.id} city={city} actions={{getCityCard:this.props.getCityCard, getCityScores:this.props.getCityScores, getCityInfo:this.props.getCityInfo, getCityImg:this.props.getCityImg, getCommentsForCity: this.props.getCommentsForCity}} />)
+                this.props.cityFoundWithSetAttributes.map(city => <CityCard
+                  key={city.id}
+                  city={city}
+                  actions={{getCityCard:this.props.getCityCard, getCityScores:this.props.getCityScores, getCityInfo:this.props.getCityInfo, getCityImg:this.props.getCityImg}}
+                  history={this.props.history}
+                  authState={this.props.authState}
+                  getCommentsForCity={this.props.getCommentsForCity} />)
               }
             </div>
           </Col>
