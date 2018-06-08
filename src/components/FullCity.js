@@ -1,10 +1,11 @@
 import React, {Component} from "react";
-import { Row, Col, Tab, Tabs, Card } from "react-materialize";
+import { Row, Col, Tab, Tabs, Card, Input, Button } from "react-materialize";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Parser from 'html-react-parser';
 import { Line } from 'rc-progress';
 import { request, withAuthentication } from '../helper'
+import { getCommentsForCity, vote, postComment } from '../actions'
 import '../styling/fullCity.css';
 import Navbar from "./Navbar";
 import AttributeModal from "./AttributeModal"
@@ -14,7 +15,7 @@ import CommentList from "./CommentList"
 class FullCity extends Component{
   constructor(props){
     super(props)
-    console.log(props)
+    // console.log(props)
   }
   // handleNameSearch = event => {
   //   event.preventDefault()
@@ -27,19 +28,9 @@ class FullCity extends Component{
   collapsible = (ele) => {
     window.$(ele).collapsible()
   }
-  getVotes = (commentId) => {
-    request(`/users/:${this.props.authState.id}/comments/:${commentId}/votes`)
-    .then(response => {
-      let totalVotes = response.data.reduce((acc, curr) => acc.vote + curr.vote).pop()
-      return totalVotes
-    })
-  }
-
-  vote = (commentId, val) => {
-    request(`/users/:${this.props.authState.id}/comments/:${commentId}/votes`, 'post', {val})
-    .then(response => {
-      console.log('hello')
-    })
+  handleAddComment = event => {
+    event.preventDefault()
+    this.props.postComment(event.target.title.value, event.target.content.value, this.props.authState.id, this.props.location.state.cI)
   }
 
   render(){
@@ -125,17 +116,33 @@ class FullCity extends Component{
             <Tab title="Comments" active>
               {
                 this.props.currentCityComments.length > 0 ?
-                this.props.currentCityComments.map(comment => {
-                  <Col s={12}>
-                    <Card className='blue-grey darken-1' textClassName='white-text' title={comment.title} actions={[<i className="material-icons">expand_less</i>],[<p>{this.getVotes(comment.id)}</p>],[<i className="material-icons">expand_more</i>]}>
-                      {comment.content}
-                    </Card>
-                  </Col>
+                this.props.currentCityComments.sort((com1, com2) => com1.vote + com2.vote).map( comment => {
+                  return (
+                    <Col s={12}>
+                      <Card className='blue-grey darken-1' textClassName='white-text' title={comment.title}
+                      actions={[
+                      <i className="material-icons" onClick={() => this.props.vote(comment.id, 1, this.props.location.state.cI, this.props.authState.id)}>expand_less</i>,
+                      <p>{comment.vote}</p>,
+                      <i className="material-icons" onClick={() => this.props.vote(comment.id, -1, this.props.location.state.cI, this.props.authState.id)}>expand_more</i>]}>
+                        {comment.content}
+                      </Card>
+                    </Col>
+                  )
                 }) : <Col s={12}>
                         <Card className='blue-grey darken-1' textClassName='white-text' title='There are no comments for this city yet' actions={[<a href='#'>Be the First!</a>]}>
                         </Card>
                      </Col>
               }
+            </Tab>
+            <Tab title="Add Comment" active>
+              <form onSubmit={this.handleAddComment}>
+                <Row>
+                    <Input name="title" placeholder="Title" s={6} />
+                    <Col s={6}></Col>
+                    <Input name="content" type="textarea" label="Content" s={12} />
+                    <Button type="submit">Submit</Button>
+                </Row>
+              </form>
             </Tab>
           </Tabs>
           </Col>
@@ -148,7 +155,7 @@ class FullCity extends Component{
 
 const mapStateToProps = ({ currentCityComments, cityInfo, cityImages, cityScores }) => ({ currentCityComments, cityInfo, cityImages, cityScores })
 
-// const mapDispatchToProps = (dispatch) => bindActionCreators({getCitiesByAtt, getCityScores, getCityInfo, getCityImg}, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({getCommentsForCity, vote, postComment}, dispatch)
 
 
-export default withAuthentication(connect(mapStateToProps)(FullCity))
+export default withAuthentication(connect(mapStateToProps, mapDispatchToProps)(FullCity))

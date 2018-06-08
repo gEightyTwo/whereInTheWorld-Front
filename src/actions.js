@@ -117,10 +117,34 @@ export const getCityCard = () => {
 }
 
 export const getCommentsForCity = (userId, cityId) => {
+  // console.log(userId, cityId)
   return(dispatch) => {
-    request(`/users/:${userId}/city/:${cityId}/comments`)
+    request(`/users/${userId}/city/${cityId}/comments`)
     .then(response => {
-      dispatch({type: GET_COMMENTS_FOR_CITY, payload: response.data})
+      console.log('???', response)
+      dispatch({type: GET_COMMENTS_FOR_CITY, payload: response.data.allReviews})
+    })
+  }
+}
+
+export const vote = (commentId, val, cI, userId) => {
+  return(dispatch) => {
+    request(`/users/${userId}/comments/${commentId}/votes`, 'post', {val})
+    .then(response => {
+      console.log(response)
+      dispatch(getCommentsForCity(userId, cI))
+    })
+    .catch(err => console.log('Got error its okay tho', err))
+  }
+}
+
+export const postComment = (title, content, userId, cI) => {
+  return(dispatch) => {
+    console.log(title, content, userId, cI);
+    request(`/users/${userId}/city/${cI}/comments`, 'post', {title, content})
+    .then(response => {
+      console.log(response)
+      dispatch(getCommentsForCity(userId, cI))
     })
   }
 }
