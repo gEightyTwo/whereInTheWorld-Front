@@ -38,13 +38,6 @@ class Home extends Component {
             <AttributeModal />
           </div>
         </Row>
-        <Row className="city-card-display-row center-align">
-          <div className="card-display-header">
-            <h5>
-              Here are a few cities that our users have commented on the most
-            </h5>
-          </div>
-        </Row>
         <Row className="city-display">
           <Col s={8} className="offset-s2">
             <div>
