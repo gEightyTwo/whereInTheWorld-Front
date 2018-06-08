@@ -1,21 +1,44 @@
+.login-container {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('../images/bird-eye-city.jpg');
+    height: 100vh;
+}
+
 .login-row {
     font-family: 'Proza Libre', sans-serif;
     display: flex;
     justify-content: center;
-    height: 100vh;
-    /* background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/nomad2.jpg');
-    background-size: cover;
-    background-repeat: no-repeat; */
 }
 
 .title-logo {
     font-size: 50px;
     font-weight: bold;
-    font-family: 'Rock Salt', cursive;
 }
 
 .title-col {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+}
+
+.card-panel {
+    border-radius: 30px;
+    font-family: 'Proza Libre', sans-serif;
+    background-color: rgb(187, 222, 219, .8);
+}
+
+.row {
+    margin-bottom: 0px;
+}
+
+.about-body {
+    font-size: 16px;
+}
+
+#input_0, #input_1, #input_2, #input_3, #input_4, #input_5 {
+    font-size: 20px;
 }
