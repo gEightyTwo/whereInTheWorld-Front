@@ -113,6 +113,7 @@ input.range-input {
     background: url('../images/funky-lines.png') top repeat;
     margin-bottom: 0;
     font-family: 'Proza Libre', sans-serif;
+    min-height: 32vh;
 }
 
 .city-card {
