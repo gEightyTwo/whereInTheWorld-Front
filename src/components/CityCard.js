@@ -23,7 +23,7 @@ const handleCardClick = (cityName, actions, history, authState, getCommentsForCi
     } else {
       request('/cities', 'post', {name:cityName})
         .then(res => {
-          history.push('./fullcity')
+          history.push('./fullcity', {cI: response.data.data.id})
         })
     }
   })
