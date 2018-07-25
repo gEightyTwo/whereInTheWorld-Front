@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Row, Col } from "react-materialize";
-import { withAuthentication, request } from '../helper'
-import { getCityCard, getCityScores, getCityInfo, getCityImg, getCommentsForCity } from "../actions.js";
+import { withAuthentication } from '../helper'
+import { getCityCard, getCityScores, getCityInfo, getCityImg } from "../actions.js";
 import "../styling/Home.css";
 import CityCard from "./CityCard";
 import Navbar from "./Navbar";

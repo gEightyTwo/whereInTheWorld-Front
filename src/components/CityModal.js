@@ -10,6 +10,8 @@ import { request, withAuthentication } from '../helper'
 class CityModal extends Component {
   constructor(props){
     super(props)
+
+    this.state = {}
   }
 
   handleNameSearch = event => {
