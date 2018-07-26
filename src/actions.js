@@ -121,7 +121,7 @@ export const getCommentsForCity = (userId, cityId) => {
   return(dispatch) => {
     request(`/users/${userId}/city/${cityId}/comments`)
     .then(response => {
-      console.log('???', response)
+      // console.log('???', response)
       dispatch({type: GET_COMMENTS_FOR_CITY, payload: response.data.allReviews})
     })
   }
