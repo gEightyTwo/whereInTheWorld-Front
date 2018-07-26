@@ -10,6 +10,8 @@ import { request, withAuthentication } from '../helper'
 class CityModal extends Component {
   constructor(props){
     super(props)
+
+    this.state = {}
   }
 
   handleNameSearch = event => {
@@ -23,6 +25,7 @@ class CityModal extends Component {
       request(`/cities/${cityName}`)
       .then(response => {
         if(response.data.data.id){
+
           this.props.getCommentsForCity(this.props.authState.id, response.data.data.id)
           this.props.history.push('./fullcity', {cI: response.data.data.id})
         } else {

@@ -4,17 +4,18 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Parser from 'html-react-parser';
 import { Line } from 'rc-progress';
-import { request, withAuthentication } from '../helper'
+import { withAuthentication } from '../helper'
 import { getCommentsForCity, vote, postComment } from '../actions'
 import '../styling/fullCity.css';
 import Navbar from "./Navbar";
 import AttributeModal from "./AttributeModal"
 import CityModal from "./CityModal"
-import CommentList from "./CommentList"
 
 class FullCity extends Component{
   constructor(props){
     super(props)
+
+    this.state = {}
     // console.log(props)
   }
   // handleNameSearch = event => {
@@ -136,7 +137,7 @@ class FullCity extends Component{
                     </Col>
                   )
                 }) : <Col s={12}>
-                        <Card className='blue-grey darken-1' textClassName='white-text' title='There are no comments for this city yet' actions={[<a href='#'>Be the First!</a>]}>
+                        <Card className='blue-grey darken-1' textClassName='white-text' title='There are no comments for this city yet' actions={[<a >Be the First!</a>]}>
                         </Card>
                      </Col>
               }
