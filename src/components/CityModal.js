@@ -22,8 +22,7 @@ class CityModal extends Component {
     if(this.props.cityInfo && this.props.cityImages && this.props.cityScores ){
       request(`/cities/${cityName}`)
       .then(response => {
-        // console.log(response.data.data, this.props.authState.id)
-        if(response){
+        if(response.data.data.id){
           this.props.getCommentsForCity(this.props.authState.id, response.data.data.id)
           this.props.history.push('./fullcity', {cI: response.data.data.id})
         } else {
