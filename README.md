@@ -1,6 +1,6 @@
 ![Nomad Title](./src/images/nomad1.png)
 ----
-Nomad is a Full Stack React City search project which enables users to find useful information about cities they search for either by name or by attributes they are looking for in a city. Users can also Comment on cities and upvote or downvote other users comments, adding a community to an otherwise data-driven site.
+Nomad is a Full Stack React City search project which enables users to find useful information about cities they search for either by name or by attributes they are looking for in a city. Users can also comment on cities and up-vote or down-vote other users comments, adding a community to an otherwise data-driven site.
 
 Search By either City name or city attributes:
 
